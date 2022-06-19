@@ -28,3 +28,13 @@ def login2():
 @pytest.mark.usefixtures("login2")
 def loginss():
     print(1)
+
+@pytest.fixture(scope="session")
+def open():
+    print("===打开浏览器===")
+
+@pytest.fixture
+# @pytest.mark.usefixtures("open") 不可取！！！不生效！！！
+def login(open):
+    # 方法级别前置操作setup
+    print(f"输入账号，密码先登录{open}")
